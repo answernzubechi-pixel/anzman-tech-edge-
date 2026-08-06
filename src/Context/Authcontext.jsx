@@ -1,5 +1,5 @@
 import { createContext, useState, useContext } from 'react';
-import { Studentdbs } from '../data/Studentdbs'; 
+import { Studentdbs } from '../Data/Studentdbs'; 
 const AuthContext = createContext();
 
 

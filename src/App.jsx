@@ -1,54 +1,58 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './Pages/Login'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './Context/Authcontext';
-import Dashboard from './Pages/Dashboard';
-import Navbar from './Components/Navbar';
-import MainLayout from './layout/Mainlayout';
+
+// Import Components
+import Sidebar from './Components/Sidebar';
+import Login from './Pages/Login';
+import Home from './Pages/Home';
 import Result from './Pages/Result';
+import Calendar from './Pages/Calendar';
+import Timetable from './Pages/Timetable';
+import CampusNews from './Pages/CampusNews';
+
+// Import the new CSS
 import './App.css';
 
-
+// Protected Route Logic: If student isn't logged in, send them to Login
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
-
-  if (!user) {
-    return <Navigate to="/" />;
-  }
-
-  return children;
+  return user ? children : <Navigate to="/login" />;
 };
 
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <Router>
         <Routes>
-          <Route path="/" element={<Login/>} />
+          {/* 1. Public Route: Login Page (No Sidebar here) */}
+          <Route path="/login" element={<Login />} />
 
-          <Route
-            path="/Dashboard"
-            element={
-              <ProtectedRoute>
-                <MainLayout pageTitle="Student Overview">
-                <Dashboard />
-                </MainLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route 
-          path="/Result" 
-          element={
-           <ProtectedRoute>
-          <MainLayout pageTitle="Academic Transcript">
-           <Result />
-           </MainLayout>
-          </ProtectedRoute>
-  } 
-/>
-
-          <Route path="*" element={<Navigate to="/" />} />
+          {/* 2. Protected Routes: All these pages will have the Sidebar */}
+          <Route path="/*" element={
+            <ProtectedRoute>
+              <div className="app-container">
+                {/* Fixed Sidebar on the left */}
+                <Sidebar />
+                
+                {/* Content changes here on the right */}
+                <div className="main-content">
+                  <Routes>
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/result" element={<Result />} />
+                    <Route path="/calendar" element={<Calendar />} />
+                    <Route path="/timetable" element={<Timetable />} />
+                    <Route path="/campusnews" element={<CampusNews />} />
+                    
+                    {/* Default path redirects to Home after Login */}
+                    <Route path="/" element={<Navigate to="/home" />} />
+                  </Routes>
+                </div>
+              </div>
+            </ProtectedRoute>
+          } />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </AuthProvider>
   );
 }

@@ -1,78 +1,85 @@
-// src/Pages/Dashboard.jsx
 import React from 'react';
-import { useAuth } from '../Context/Authcontext'; // Match your casing!
+import { useAuth } from '../Context/Authcontext';
 
 const Dashboard = () => {
-  // 1. Grab only the student data (The Logout tool is now in the Sidebar!)
   const { user } = useAuth();
-  if (!user) return <div> loading Student Profile .....</div> 
-
-  // 2. Logic: Calculate Performance Analytics
-  const totalScore = user.results.reduce((acc, curr) => acc + curr.score, 0);
-  const average = (totalScore / user.results.length).toFixed(2);
 
   return (
-    <div className="dashboard-content-inner">
-      
-      {/* 3. STUDENT OVERVIEW HEADER */}
-      <header className="dashboard-page-header">
-        <div className="header-text">
-          <h1>Welcome back, {user.name}</h1>
-          <p>Here is your academic performance for this term.</p>
-        </div>
+    <div className="main-content">
+      {/* 1. WELCOME HEADER */}
+      <header style={{ marginBottom: '30px' }}>
+        <h1 style={{ fontSize: '2rem', color: '#0f172a' }}>
+          Welcome, <span style={{ color: '#8b5cf6' }}>{user.name}</span>
+        </h1>
+        <p style={{ color: '#64748b' }}>Campus Connect: Student Overview Portal</p>
       </header>
 
-      {/* 4. PERFORMANCE CARDS (Analytics) */}
-      <div className="stats-grid">
-        <div className="stat-card">
-          <h3>Average Score</h3>
-          <p className={average >= 50 ? "text-pass" : "text-fail"}>{average}%</p>
+      <div className="dashboard-grid">
+        
+        {/* 2. CONSOLIDATED STUDENT PROFILE CARD */}
+        <div className="profile-card">
+          <div className="profile-header">
+            <img 
+              src={`/Avatar/${user.id}.png`} 
+              alt="Profile" 
+              onError={(e) => e.target.src = "https://via.placeholder.com/150"}
+            />
+            <div>
+              <h2 style={{ fontSize: '1.2rem', color: '#1e293b' }}>{user.name}</h2>
+              <p style={{ color: '#8b5cf6', fontWeight: 'bold', fontSize: '0.9rem' }}>
+                {user.currentClass} {user.arm}
+              </p>
+            </div>
+          </div>
+
+          <div style={{ borderTop: '1px solid #f1f5f9', paddingTop: '20px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+              <span style={{ color: '#64748b' }}>Admission No:</span>
+              <span style={{ fontWeight: '600' }}>{user.admissionNo}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+              <span style={{ color: '#64748b' }}>Sport House:</span>
+              <span style={{ fontWeight: '600', color: '#b45309' }}>{user.house}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#64748b' }}>Guardian:</span>
+              <span style={{ fontWeight: '600' }}>{user.guardianName}</span>
+            </div>
+          </div>
         </div>
-        <div className="stat-card">
-          <h3>Total Subjects</h3>
-          <p>{user.results.length}</p>
-        </div>
-        <div className="stat-card">
-          <h3>Academic Status</h3>
-          <p className={average >= 50 ? "status-pass" : "status-fail"}>
-            {average >= 50 ? "PROMOTED" : "HELD BACK"}
-          </p>
+
+        {/* 3. ACADEMIC SNAPSHOT STATS */}
+        <div className="stats-grid">
+          <div className="stat-box purple">
+            <p style={{ fontSize: '0.8rem', opacity: 0.8 }}>Class Rank</p>
+            <h3 style={{ fontSize: '1.8rem' }}>{user.rank}</h3>
+          </div>
+          <div className="stat-box blue">
+            <p style={{ fontSize: '0.8rem', opacity: 0.8 }}>Attendance</p>
+            <h3 style={{ fontSize: '1.8rem' }}>{user.attendance}</h3>
+          </div>
+          <div className="stat-box green">
+            <p style={{ fontSize: '0.8rem', opacity: 0.8 }}>Avg Score</p>
+            <h3 style={{ fontSize: '1.8rem' }}>{user.averageScore}%</h3>
+          </div>
+
+          {/* 4. QUICK NOTICE PREVIEW */}
+          <div style={{ 
+            gridColumn: 'span 3', 
+            background: '#fff', 
+            padding: '20px', 
+            borderRadius: '15px', 
+            marginTop: '10px',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.05)',
+            borderLeft: '5px solid #ef4444'
+          }}>
+            <h4 style={{ color: '#ef4444', fontSize: '0.8rem', textTransform: 'uppercase', marginBottom: '5px' }}>Important Notice</h4>
+            <p style={{ color: '#1e293b', fontSize: '0.9rem' }}>
+              Inter-House sports competition starts next week. Ensure all athletes have submitted their medical clearance.
+            </p>
+          </div>
         </div>
       </div>
-
-      {/* 5. RESULTS TABLE */}
-      <div className="table-container">
-        <h3>Statement of Results</h3>
-        <table className="anz-table">
-          <thead>
-            <tr>
-              <th>Subject</th>
-              <th>Score</th>
-              <th>Grade</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* 6. THE LOOP: Maps through the results */}
-            {user.results.map((item, index) => (
-              <tr key={index}>
-                <td>{item.subject}</td>
-                <td>{item.score}</td>
-                {/* 7. COLOR LOGIC: Red for fail, Green for pass */}
-                <td className={item.score < 50 ? "text-fail" : "text-pass"}>
-                  {item.grade}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* 8. REMARKS BOX */}
-      <div className="remarks-box">
-        <h4>Principal's Remark:</h4>
-        <p>"{user.remarks}"</p>
-      </div>
-
     </div>
   );
 };

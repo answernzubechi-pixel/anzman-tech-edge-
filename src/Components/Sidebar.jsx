@@ -1,41 +1,53 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/Authcontext';
 
 const Sidebar = () => {
-  // 1. Grab the tools
   const { logout } = useAuth();
   const navigate = useNavigate();
 
-  // 2. The Logout Handler
-  const handleExit = () => {
-    logout(); // Tell the brain to forget the student
-    navigate('/'); // Send them back to the login page
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
   };
 
   return (
-    <aside className="anz-sidebar">
-      {/* 3. Branding */}
-      <div className="sidebar-brand">
-        <h2>AnZtech Edge</h2>
+    <div className="sidebar">
+      <div className="sidebar-logo">
+        AnZtech <span>Connect</span>
       </div>
+      
+      <nav className="sidebar-menu">
+        <NavLink to="/home" className="nav-link">Home</NavLink>
+        <NavLink to="/result" className="nav-link">Result</NavLink>
+        <NavLink to="/calendar" className="nav-link">Calendar</NavLink>
+        <NavLink to="/timetable" className="nav-link">Timetable</NavLink>
+        <NavLink to="/campusnews" className="nav-link">CampusNews</NavLink>
+      </nav>
 
-      {/* 4. Navigation Links */}
-      <nav className="sidebar-links">
-        <Link to="/Dashboard" className="nav-item">
-          Dashboard
-        </Link> <br/><br/>
-        <Link to = "/Result" className='nav-item'>My Transcript </Link>
-        {/* You can add more links here later like "Profile" or "Calendar" */}
-      </nav><br/>
-
-      {/* 5. The Kill-Switch (Logout) */}
-      <div className="sidebar-footer">
-        <button onClick={handleExit} className="logout-btn">
+      {/* --- LOGOUT SECTION --- */}
+      <div style={{ padding: '20px', borderTop: '1px solid #1e293b' }}>
+        <button 
+          onClick={handleLogout}
+          style={{
+            width: '100%',
+            padding: '12px',
+            background: '#ef4444', // Red for Logout
+            color: 'white',
+            border: 'none',
+            borderRadius: '8px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            transition: '0.3s'
+          }}
+        >
           Logout
         </button>
+        <p style={{ color: '#64748b', fontSize: '0.7rem', marginTop: '15px', textAlign: 'center' }}>
+          © 2024 AnZman Education
+        </p>
       </div>
-    </aside>
+    </div>
   );
 };
 

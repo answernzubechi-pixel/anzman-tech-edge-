@@ -9,7 +9,7 @@ const CampusNews = () => {
       date: "October 28, 2024",
       title: "Yellow House Leads the Inter-House Heats",
       desc: "An impressive display of speed and stamina as Yellow House athletes dominated the 100m and 400m trials today.",
-      img: "https://images.unsplash.com/photo-1526676037777-05a232554f77?q=80&w=400&h=250&auto=format&fit=crop"
+      img: "https://unsplash.com/photos/person-in-yellow-jacket-with-circular-logo-7XpusV3F5mc"
     },
     {
       id: 2,
@@ -17,7 +17,7 @@ const CampusNews = () => {
       date: "October 20, 2024",
       title: "New Ultra-Modern ICT Hub Commissioned",
       desc: "The Principal officially opened the AnZtech ICT Hub today, featuring 50 new workstations for high-level data processing.",
-      img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=400&h=250&auto=format&fit=crop"
+      img: "https://unsplash.com/photos/a-room-with-a-bunch-of-chairs-in-it-kZRXTRP9ce0"
     },
     {
       id: 3,
@@ -25,7 +25,7 @@ const CampusNews = () => {
       date: "October 15, 2024",
       title: "Cultural Day Celebration: A Success",
       desc: "Our students showcased the rich heritage of our nation through dance, attire, and local cuisines in a spectacular event.",
-      img: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=400&h=250&auto=format&fit=crop"
+      img: "https://unsplash.com/photos/a-group-of-people-in-traditional-attire-with-orange-turbans-aYb_3aOXN8U"
     },
     {
       id: 4,
@@ -35,7 +35,7 @@ const CampusNews = () => {
       desc: "Discussions focused on student security, the upcoming exams, and the end-of-year Carol Service planning.",
       img: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=400&h=250&auto=format&fit=crop"
     }
-  ];
+  ];  
 
   return (
     <div>

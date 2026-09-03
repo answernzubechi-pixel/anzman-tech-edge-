@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const CampusNews = () => {
   // Logic: An array of school highlights to make the site look professional and active
   const newsList = [
@@ -7,9 +8,9 @@ const CampusNews = () => {
       id: 1,
       tag: "Sports",
       date: "October 28, 2024",
-      title: "Yellow House Leads the Inter-House Heats",
+      title: "Red House Leads the Inter-House Heats",
       desc: "An impressive display of speed and stamina as Yellow House athletes dominated the 100m and 400m trials today.",
-      img: "https://unsplash.com/photos/person-in-yellow-jacket-with-circular-logo-7XpusV3F5mc"
+      img: "https://plus.unsplash.com/premium_photo-1664304936422-4b3b09f047e6?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       id: 2,
@@ -17,15 +18,15 @@ const CampusNews = () => {
       date: "October 20, 2024",
       title: "New Ultra-Modern ICT Hub Commissioned",
       desc: "The Principal officially opened the AnZtech ICT Hub today, featuring 50 new workstations for high-level data processing.",
-      img: "https://unsplash.com/photos/a-room-with-a-bunch-of-chairs-in-it-kZRXTRP9ce0"
+      img: "https://media.istockphoto.com/id/2162383759/photo/modern-computer-classroom-with-monitors-and-blue-chairs.jpg?s=1024x1024&w=is&k=20&c=JjZroPw2jjeZs3M27_QlQd_DMIS_8MkndFKcaO4HFN0="
     },
     {
       id: 3,
       tag: "Cultural",
-      date: "October 15, 2024",
+      date: "October 15, 2026",
       title: "Cultural Day Celebration: A Success",
       desc: "Our students showcased the rich heritage of our nation through dance, attire, and local cuisines in a spectacular event.",
-      img: "https://unsplash.com/photos/a-group-of-people-in-traditional-attire-with-orange-turbans-aYb_3aOXN8U"
+      img: "https://images.unsplash.com/photo-1774437668053-74fc297fb8e7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       id: 4,

@@ -109,7 +109,7 @@ const CampusNews = () => {
         borderRadius: '20px', 
         color: 'white', 
         textAlign: 'center' 
-      }}>
+      }}> <br/>
         <h3 style={{ marginBottom: '10px' }}>Never Miss an Update</h3>
         <p style={{ opacity: 0.8, fontSize: '0.9rem', marginBottom: '25px' }}>
           Subscribe to our official newsletter to get school news delivered to your parent's email.
